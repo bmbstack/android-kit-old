@@ -13,22 +13,30 @@ import java.util.HashMap;
 public class FileSystem {
 	private static final String LOG_TAG = "FileSystem";
 	private static HashMap<String, String> sFileDirectoryMap;
-	
+	private static boolean sInitFileSystemResult = false;
+
 	/**
 	 * Initial the file system, storage the file 
-	 * 
+	 *
 	 * @return
 	 */
-	public static boolean init(FileDirectoryContext fileDirectoryContext) {
-		boolean result = false;
+	public static void init(FileDirectoryContext fileDirectoryContext) {
 		sFileDirectoryMap = new HashMap<String, String>();
 		if(!isExternalStorageAvailable()) {
-			return false; //initial file system fail when the external storage unavailable
+			sInitFileSystemResult = false;
+			return;
 		}
 		fileDirectoryContext.defineVirtualFileDirectory(); //define the virtual file directory
-		result = createFileDirectoryByTreewalk(fileDirectoryContext.getSDCardMainFileDirectory())  
-			  && createFileDirectoryByTreewalk(fileDirectoryContext.getSDCardHiddenFileDirectory());
-		return result;
+		sInitFileSystemResult = createFileDirectoryByTreewalk(fileDirectoryContext.getSDCardMainFileDirectory())
+				&& createFileDirectoryByTreewalk(fileDirectoryContext.getSDCardHiddenFileDirectory());
+	}
+
+	/**
+	 * external storage
+	 * @return
+	 */
+	public static boolean available() {
+		return sInitFileSystemResult;
 	}
 	
 	/**
