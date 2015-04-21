@@ -1,0 +1,2 @@
+include ':AndroidKit'
+include ':app'
