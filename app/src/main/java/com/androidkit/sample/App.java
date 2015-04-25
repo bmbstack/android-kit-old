@@ -8,7 +8,6 @@ import android.app.Application;
 import com.androidkit.util.AppUtils;
 
 public class App extends Application {
-	private static final String APP_NAME = "Sample";
 
 	@Override
 	public void onCreate() {
@@ -16,6 +15,4 @@ public class App extends Application {
 		AppUtils.initAndroidKit(getApplicationContext(), BuildConfig.DEBUG);
 		AppUtils.initImageLoader(getApplicationContext());
 	}
-
-
 }

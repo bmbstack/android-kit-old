@@ -6,4 +6,11 @@
 /build
 /captures
 
+/app
 *.iml
+/build.gradle
+/settings.gradle
+/gradlew
+/gradlew.bat
+/LICENSE
+*.properties
