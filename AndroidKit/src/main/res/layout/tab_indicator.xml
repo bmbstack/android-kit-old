@@ -22,7 +22,7 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:singleLine="true"
-        android:textColor="@android:color/white"
+        android:textColor="@color/tab_text"
         android:textSize="15dp"
         android:visibility="visible" />
 

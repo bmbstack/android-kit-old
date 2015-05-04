@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="statusbar_bg">#2d8651</color>
+    <color name="toolbar_bg">#40AA53</color>
+    <color name="tab_text_normal">#999999</color>
+    <color name="tab_text_selected">@color/toolbar_bg</color>
 </resources>

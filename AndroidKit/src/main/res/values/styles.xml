@@ -1,3 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <style name="ToolBarStyle" parent="@android:style/Theme.Holo.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:titleTextStyle">@style/TitleTextStyle</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="theme">@style/ThemeOverlay.AppCompat.Dark</item>
+    </style>
+
+    <style name="TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColorHint">@android:color/transparent</item>
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
 </resources>
