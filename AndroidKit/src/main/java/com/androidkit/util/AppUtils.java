@@ -11,10 +11,14 @@ import com.androidkit.file.PreferencesManager;
 import com.androidkit.log.LogSystem;
 import com.androidkit.log.Logger;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
-import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.core.decode.BaseImageDecoder;
+import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
 import java.io.File;
@@ -63,15 +67,24 @@ public class AppUtils {
         else
             cacheDir = StorageUtils.getCacheDirectory(applicationContext);
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(applicationContext)
-                .threadPriority(Thread.NORM_PRIORITY - 2)
+                .memoryCacheExtraOptions(480, 800) // default = device screen dimensions
+                .diskCacheExtraOptions(480, 800, null)
+                .threadPoolSize(3) // default
+                .threadPriority(Thread.NORM_PRIORITY - 2) // default
+                .tasksProcessingOrder(QueueProcessingType.FIFO) // default
                 .denyCacheImageMultipleSizesInMemory()
-                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
-                .discCache(new UnlimitedDiscCache(cacheDir))
-                .diskCacheSize(50 * 1024 * 1024) // 50 Mb
-                .tasksProcessingOrder(QueueProcessingType.LIFO)
-                .writeDebugLogs() // Remove for release app
+                .memoryCache(new LruMemoryCache(2 * 1024 * 1024))
+                .memoryCacheSize(2 * 1024 * 1024)
+                .memoryCacheSizePercentage(13) // default
+                .diskCache(new UnlimitedDiscCache(cacheDir)) // default
+                .diskCacheSize(50 * 1024 * 1024)
+                .diskCacheFileCount(100)
+                .diskCacheFileNameGenerator(new HashCodeFileNameGenerator()) // default
+                .imageDownloader(new BaseImageDownloader(applicationContext)) // default
+                .imageDecoder(new BaseImageDecoder(true)) // default
+                .defaultDisplayImageOptions(DisplayImageOptions.createSimple()) // default
+                .writeDebugLogs()
                 .build();
-        // Initialize ImageLoader with configuration.
         ImageLoader.getInstance().init(config);
     }
 }
