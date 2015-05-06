@@ -1,3 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="LoadingView">
+        <attr name="iconBg" format="reference"/><!-- 背景icon -->
+        <attr name="iconFg" format="reference"/><!-- 前景icon -->
+        <attr name="iconSize" format="dimension"/>
+    </declare-styleable>
 </resources>
