@@ -2,7 +2,6 @@
 <resources>
 
     <color name="window_background">#EBEBEB</color>
-    <color name="window_background_black">#323232</color>
     <color name="main_black">#353535</color>
     <color name="main_gray">#9A9A9A</color>
 
