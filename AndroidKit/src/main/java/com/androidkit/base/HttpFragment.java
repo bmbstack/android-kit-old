@@ -12,31 +12,28 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.androidkit.R;
-import com.androidkit.util.DensityUtils;
 import com.androidkit.view.LoadingView;
 
 /**
  * 
  * @Description 有进度提示的Fragment，适用于有网络请求的页面，有内容为空提示和网络错误提示。
  */
-public abstract class ProgressFragment extends Fragment {
+public abstract class HttpFragment extends Fragment {
 	private FrameLayout mContentContainer;
 	private FrameLayout mProgressContainer;
 	private View mContentView;
-	private RelativeLayout mEmptyView;
 	private RelativeLayout mRetryView;
 	private boolean mContentShown;
-	private int mEmptyLayoutRes;
 	private int mRetryLayoutRes;
 	private LoadingView mLoadingView;
 
-	public ProgressFragment() {
+	public HttpFragment() {
 
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_progress, container, false);
+		return inflater.inflate(R.layout.fragment_http, container, false);
 	}
 
 	protected void setContentView(int layoutResId) {
@@ -50,10 +47,6 @@ public abstract class ProgressFragment extends Fragment {
 
 	protected RelativeLayout getRetryView() {
 		return mRetryView;
-	}
-
-	protected RelativeLayout getEmptyView() {
-		return mEmptyView;
 	}
 
 	private void setContentView(View view) {
@@ -77,10 +70,6 @@ public abstract class ProgressFragment extends Fragment {
 		}
 	}
 
-	public void setEmptyView(int emptyLayout) {
-		mEmptyLayoutRes = emptyLayout;
-	}
-
 	public void setRetryView(int retryLayout) {
 		mRetryLayoutRes = retryLayout;
 	}
@@ -94,7 +83,6 @@ public abstract class ProgressFragment extends Fragment {
 
 	protected void showLoadingView() {
 		checkView();
-		mEmptyView.setVisibility(View.GONE);
 		mRetryView.setVisibility(View.GONE);
 		mContentView.setVisibility(View.GONE);
 		setContentContainerShown(false);
@@ -102,38 +90,22 @@ public abstract class ProgressFragment extends Fragment {
 
 	protected void showContentView() {
 		checkView();
-		mEmptyView.setVisibility(View.GONE);
-		mEmptyView.setVisibility(View.GONE);
-
 		mRetryView.setVisibility(View.GONE);
-		mRetryView.setVisibility(View.GONE);
-
 		mContentView.setVisibility(View.VISIBLE);
-
 		setContentContainerShown(true);
 	}
 
 	protected void showEmptyView() {
 		checkView();
 		mRetryView.setVisibility(View.GONE);
-		mRetryView.setVisibility(View.GONE);
-
 		mContentView.setVisibility(View.GONE);
-
-		mEmptyView.setVisibility(View.VISIBLE);
 		setContentContainerShown(true);
 	}
 
 	protected void showRetryView() {
-
 		checkView();
-		mEmptyView.setVisibility(View.GONE);
-		mEmptyView.setVisibility(View.GONE);
-
 		mContentView.setVisibility(View.GONE);
-
 		mRetryView.setVisibility(View.VISIBLE);
-
 		setContentContainerShown(true);
 	}
 
@@ -184,31 +156,26 @@ public abstract class ProgressFragment extends Fragment {
 			throw new RuntimeException("Your content must have a ViewGroup whose id attribute is 'R.id.progress_container'");
 
 		//add loading view
-		mLoadingView = new LoadingView(getActivity(), DensityUtils.dip2px(40.0f));
-		mLoadingView.setAnimBgImage(R.drawable.ic_loading_yuan_gray);
-		mLoadingView.setAnimForeImage(R.drawable.ic_loadiing_zhen);
-		mLoadingView.setBackgroundResource(R.drawable.bg_loading);
+		View loadingViewLayout = View.inflate(getActivity(), R.layout.layout_loading, null);
+		mLoadingView = (LoadingView) loadingViewLayout.findViewById(R.id.loadingView);
+		FrameLayout.LayoutParams loadingViewParams = new FrameLayout.LayoutParams(
+				FrameLayout.LayoutParams.WRAP_CONTENT,
+				FrameLayout.LayoutParams.WRAP_CONTENT,
+				Gravity.CENTER
+			);
+		mProgressContainer.addView(loadingViewLayout, loadingViewParams);
 		mLoadingView.hide();
-		mProgressContainer.addView(
-				mLoadingView,
-				new FrameLayout.LayoutParams(DensityUtils.dip2px(80.0f), DensityUtils.dip2px(80.0f), Gravity.CENTER));
 
 		mContentContainer = (FrameLayout)root.findViewById(R.id.flContentContainer);
 		if (mContentContainer == null)
 			throw new RuntimeException("Your content must have a ViewGroup whose id attribute is 'R.id.content_container'");
 
-		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+		RelativeLayout.LayoutParams retryParams = new RelativeLayout.LayoutParams(
 				RelativeLayout.LayoutParams.MATCH_PARENT,
 				RelativeLayout.LayoutParams.MATCH_PARENT);
-		mEmptyView = (RelativeLayout) root.findViewById(R.id.rlContentEmpty);
-		if (mEmptyView != null) {
-			mEmptyView.addView(View.inflate(getActivity(), mEmptyLayoutRes, null), params);
-			mEmptyView.setVisibility(View.GONE);
-		}
-
 		mRetryView = (RelativeLayout) root.findViewById(R.id.rlContentRetry);
 		if (mRetryView != null) {
-			mRetryView.addView(View.inflate(getActivity(), mRetryLayoutRes, null), params);
+			mRetryView.addView(View.inflate(getActivity(), mRetryLayoutRes, null), retryParams);
 			mRetryView.setVisibility(View.GONE);
 		}
 

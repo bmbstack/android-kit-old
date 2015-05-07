@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
+
+        <com.androidkit.view.LoadingView
+            xmlns:loading="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/loadingViewMore"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_loading"
+            loading:iconBg="@drawable/ic_loading_yuan_gray"
+            loading:iconFg="@drawable/ic_loadiing_zhen"
+            loading:iconSize="18dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/load_mode_tip"
+            android:textColor="@color/main_gray"
+            android:textSize="@dimen/text_size_14"/>
+    </LinearLayout>
+</RelativeLayout>

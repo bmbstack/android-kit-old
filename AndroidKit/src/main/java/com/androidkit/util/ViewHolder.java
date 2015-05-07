@@ -17,14 +17,12 @@ import com.nostra13.universalimageloader.core.ImageLoader;
  *
  */
 public class ViewHolder {
-	private Context mContext;
 	private SparseArray<View> mViews;
 	private View mConvertView;
 	private int mPosition;
 
 
 	private ViewHolder(Context context, int layoutId, int position) {
-		mContext = context;
 		mViews = new SparseArray<View>();
 		mConvertView = View.inflate(context, layoutId, null);
 		mPosition = position;

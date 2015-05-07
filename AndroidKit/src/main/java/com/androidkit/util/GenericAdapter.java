@@ -1,6 +1,5 @@
 package com.androidkit.util;
 
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -13,12 +12,10 @@ import java.util.List;
  */
 public abstract class GenericAdapter<T> extends BaseAdapter {
 	private List<T> mDataList = new ArrayList<T>();
-	private Context mCurrentContext;
 	private final int mItemLayoutId;
 
-	public GenericAdapter(Context context, int itemLayoutId) {
-		mCurrentContext = context;
-		mItemLayoutId = itemLayoutId;
+	public GenericAdapter() {
+		mItemLayoutId = getItemLayoutId();
 	}
 
 
@@ -30,6 +27,10 @@ public abstract class GenericAdapter<T> extends BaseAdapter {
 	public void setData(List<T> dataList) {
 		mDataList.clear();
 		addData(dataList);
+	}
+
+	public List<T> getData() {
+		return mDataList;
 	}
 
 	/**
@@ -60,11 +61,12 @@ public abstract class GenericAdapter<T> extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder holder = ViewHolder.get(mCurrentContext, convertView, mItemLayoutId);
+		ViewHolder holder = ViewHolder.get(parent.getContext(), convertView, mItemLayoutId);
 		bindView(position, holder, (T)getItem(position));
 		return holder.getConvertView();
 
 	}
 
+	public abstract int getItemLayoutId();
 	public abstract void bindView(int position, ViewHolder holder, T data);
 }

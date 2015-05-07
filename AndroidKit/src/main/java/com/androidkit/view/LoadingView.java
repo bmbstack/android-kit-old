@@ -45,10 +45,10 @@ public class LoadingView extends FrameLayout{
 	public LoadingView(Context context, AttributeSet attrs){
 
 		super(context, attrs);
-		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.QaLoadingView);
-		int iconSizePx = ta.getDimensionPixelSize(R.styleable.QaLoadingView_iconSize, -100);
-		mIvBgIconResId = ta.getResourceId(R.styleable.QaLoadingView_iconBg, 0);
-		mIvFgIconResId = ta.getResourceId(R.styleable.QaLoadingView_iconFg, 0);
+		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.LoadingView);
+		int iconSizePx = ta.getDimensionPixelSize(R.styleable.LoadingView_iconSize, -100);
+		mIvBgIconResId = ta.getResourceId(R.styleable.LoadingView_iconBg, 0);
+		mIvFgIconResId = ta.getResourceId(R.styleable.LoadingView_iconFg, 0);
 		ta.recycle();
 
 		initImageViews(iconSizePx);
@@ -92,6 +92,8 @@ public class LoadingView extends FrameLayout{
 		//mFgRotateAnim.setStartOffset(50);//原300正好
 		mFgRotateAnim.setFillAfter(true);
 		mFgRotateAnim.setAnimationListener(mFgAnimListener);
+
+		show(100);
 	}
 
 	public void setAnimForeImage(int resId){
