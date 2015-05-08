@@ -122,14 +122,22 @@ public abstract class HttpFragment extends Fragment {
 
 		mContentShown = shown;
 		if (shown) {
-			mProgressContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
-			mContentContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
+			if(getActivity() != null) {
+				mProgressContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
+			}
+			if(getActivity() != null) {
+				mContentContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
+			}
 			mLoadingView.hide();
 			mProgressContainer.setVisibility(View.GONE);
 			mContentContainer.setVisibility(View.VISIBLE);
 		} else {
-			mProgressContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
-			mContentContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
+			if(getActivity() != null) {
+				mProgressContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
+			}
+			if(getActivity() != null) {
+				mContentContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
+			}
 			mContentContainer.setVisibility(View.GONE);
 			mLoadingView.show(100);
 			mProgressContainer.setVisibility(View.VISIBLE);
@@ -156,7 +164,7 @@ public abstract class HttpFragment extends Fragment {
 			throw new RuntimeException("Your content must have a ViewGroup whose id attribute is 'R.id.progress_container'");
 
 		//add loading view
-		View loadingViewLayout = View.inflate(getActivity(), R.layout.layout_loading, null);
+		View loadingViewLayout = View.inflate(root.getContext(), R.layout.layout_loading, null);
 		mLoadingView = (LoadingView) loadingViewLayout.findViewById(R.id.loadingView);
 		FrameLayout.LayoutParams loadingViewParams = new FrameLayout.LayoutParams(
 				FrameLayout.LayoutParams.WRAP_CONTENT,
@@ -175,7 +183,7 @@ public abstract class HttpFragment extends Fragment {
 				RelativeLayout.LayoutParams.MATCH_PARENT);
 		mRetryView = (RelativeLayout) root.findViewById(R.id.rlContentRetry);
 		if (mRetryView != null) {
-			mRetryView.addView(View.inflate(getActivity(), mRetryLayoutRes, null), retryParams);
+			mRetryView.addView(View.inflate(root.getContext(), mRetryLayoutRes, null), retryParams);
 			mRetryView.setVisibility(View.GONE);
 		}
 
