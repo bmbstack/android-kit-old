@@ -88,12 +88,16 @@ public abstract class ListHttpFragment<T, Adapter> extends Fragment implements S
         doService();
     }
 
-    private void setRefreshEnable(boolean enable) {
+    protected void setRefreshEnable(boolean enable) {
         mRefreshEnable = enable;
     }
 
-    private void setLoadmoreEnable(boolean enable) {
+    protected void setLoadmoreEnable(boolean enable) {
         mLoadmoreEnable = enable;
+    }
+
+    protected  void setmSwipeRemoveEnable(boolean enable) {
+        mSwipeRemoveEnable = enable;
     }
 
     public void setRetryView(int retryLayout) {
