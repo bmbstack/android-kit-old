@@ -1,12 +1,30 @@
 package com.androidkit.sample;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v4.app.Fragment;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TabHost;
+import android.widget.TextView;
+
+import com.androidkit.base.BaseActivity;
+import com.androidkit.base.FragmentTabHost;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseActivity {
+    private List<Fragment> mFragments = new ArrayList<Fragment>();
+    private FragmentTabHost tabhost;
+
+    public static void startActivity(Activity activity) {
+        Intent intent = new Intent(activity, MainActivity.class);
+        activity.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,24 +33,32 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    protected void initData() {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    protected void initTitleView() {
+        getToolbar().setNavigationIcon(R.drawable.ic_launcher);
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    @Override
+    protected void initContentView() {
+        tabhost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        tabhost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
+        MainTab[] tabs = MainTab.values();
+        for(int i = 0; i < tabs.length; i++) {
+            MainTab tab = tabs[i];
+            TabHost.TabSpec tabSpec = tabhost.newTabSpec(getString(tab.getTag()));
+
+            View tabItemView = View.inflate(this, R.layout.item_main_tab, null);
+            ImageView iv_main_tab_item = (ImageView) tabItemView.findViewById(R.id.iv_main_tab_item);
+            iv_main_tab_item.setImageResource(tab.getResIcon());
+            TextView tv_main_tab_item = (TextView) tabItemView.findViewById(R.id.tv_main_tab_item);
+            tv_main_tab_item.setText(tab.getTag());
+
+            tabSpec.setIndicator(tabItemView);
+            tabhost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
+            tabhost.addTab(tabSpec, tab.getClazz(), null);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }

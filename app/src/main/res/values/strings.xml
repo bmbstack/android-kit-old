@@ -3,4 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="main_tab_name_dynamic">动态</string>
+    <string name="main_tab_name_my">我的</string>
 </resources>

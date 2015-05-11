@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/ll_my_expert"
+    style="@style/item_container_horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/iv_my_expert_avatars"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_12"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:id="@+id/tv_my_expert_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="张仲景"
+                android:textColor="@color/main_black"
+                android:textSize="@dimen/text_size_18"/>
+            <TextView
+                android:id="@+id/tv_my_expert_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/space_15"
+                android:layout_marginRight="@dimen/space_15"
+                android:text="张仲景"
+                android:textColor="@color/main_black"
+                android:textSize="@dimen/text_size_14"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+                android:id="@+id/tv_my_expert_hospital"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_2"
+                android:singleLine="true"
+                android:text="北京协和医院"
+                android:textColor="@color/main_gray"
+                android:textSize="@dimen/text_size_14"/>
+            <TextView
+                android:id="@+id/tv_my_expert_section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/space_15"
+                android:layout_marginRight="@dimen/space_15"
+                android:layout_marginTop="@dimen/space_2"
+                android:singleLine="true"
+                android:text="呼吸道"
+                android:textColor="@color/main_gray"
+                android:textSize="@dimen/text_size_14"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_2"
+        android:layout_marginRight="@dimen/space_2"
+        android:contentDescription="@null"
+        android:src="@android:drawable/ic_delete"/>
+</LinearLayout>

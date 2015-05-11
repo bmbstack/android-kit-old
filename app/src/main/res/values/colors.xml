@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main_tab_item_text_selected">@color/toolbar_bg</color>
+    <color name="main_tab_item_text_normal">#999999</color>
+    <color name="main_tab_background">#FCFCFC</color>
+    <color name="main_tab_split_color">#D6D6D6</color>
+    <color name="tab_strip_selected">@color/toolbar_bg</color>
+
+    <color name="list_divider_color">#DADADA</color>
+    <color name="bg_list_item_normal">#ffffff</color>
+    <color name="bg_list_item_pressed">#F1F1F1</color>
+
+    <color name="guide_start_background">#FF1D2E5A</color>
+    <color name="guide_end_background">#FF5494FC</color>
+
+    <color name="font_green">#3bbd79</color>
+    <color name="white_pressed">#ffdfdfdf</color>
+    <color name="font_black_content">#222222</color>
+    <color name="font_black_comment">#ff666666</color>
+    <color name="bg_dynamic_comment">#ffe4e4e4</color>
+</resources>

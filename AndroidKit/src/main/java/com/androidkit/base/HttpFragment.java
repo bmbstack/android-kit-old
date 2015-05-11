@@ -24,7 +24,7 @@ public abstract class HttpFragment extends Fragment {
 	private View mContentView;
 	private RelativeLayout mRetryView;
 	private boolean mContentShown;
-	private int mRetryLayoutRes;
+	private int mRetryLayoutRes = -1;
 	private LoadingView mLoadingView;
 
 	public HttpFragment() {
@@ -92,13 +92,6 @@ public abstract class HttpFragment extends Fragment {
 		checkView();
 		mRetryView.setVisibility(View.GONE);
 		mContentView.setVisibility(View.VISIBLE);
-		setContentContainerShown(true);
-	}
-
-	protected void showEmptyView() {
-		checkView();
-		mRetryView.setVisibility(View.GONE);
-		mContentView.setVisibility(View.GONE);
 		setContentContainerShown(true);
 	}
 
@@ -182,7 +175,7 @@ public abstract class HttpFragment extends Fragment {
 				RelativeLayout.LayoutParams.MATCH_PARENT,
 				RelativeLayout.LayoutParams.MATCH_PARENT);
 		mRetryView = (RelativeLayout) root.findViewById(R.id.rlContentRetry);
-		if (mRetryView != null) {
+		if (mRetryView != null && mRetryLayoutRes != -1) {
 			mRetryView.addView(View.inflate(root.getContext(), mRetryLayoutRes, null), retryParams);
 			mRetryView.setVisibility(View.GONE);
 		}
