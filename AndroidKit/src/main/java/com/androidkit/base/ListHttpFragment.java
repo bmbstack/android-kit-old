@@ -41,6 +41,7 @@ public abstract class ListHttpFragment<T, Adapter> extends Fragment implements S
     private boolean mSwipeRemoveEnable = false;
     protected UltimateRecyclerView mRecyclerView;
     protected UltimateViewAdapter mAdapter;
+    private LinearLayoutManager mLayoutManager;
 
     final private Handler mHandler = new Handler();
     final private Runnable mRequestFocus = new Runnable() {
@@ -71,8 +72,8 @@ public abstract class ListHttpFragment<T, Adapter> extends Fragment implements S
         getRetryView().findViewById(R.id.btRetry).setOnClickListener(mOnClickListener);
         mRecyclerView = (UltimateRecyclerView) getActivity().findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(false);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(layoutManager);
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = initAdapter();
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.addItemDividerDecoration(getActivity());
@@ -89,6 +90,10 @@ public abstract class ListHttpFragment<T, Adapter> extends Fragment implements S
             mRecyclerView.setSwipeToDismissCallback(this);
         }
         doService();
+    }
+
+    protected RecyclerView.LayoutManager getLayoutManager() {
+        return mLayoutManager;
     }
 
     protected void setRefreshEnable(boolean enable) {
