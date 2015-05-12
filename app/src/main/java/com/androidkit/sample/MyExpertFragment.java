@@ -1,9 +1,10 @@
 package com.androidkit.sample;
 
+import android.os.Bundle;
 import android.os.Handler;
 
 import com.androidkit.base.ListHttpFragment;
-import com.androidkit.util.GenericAdapter;
+import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,18 +12,27 @@ import java.util.List;
 /**
  * Created by GYJC on 2015/4/30.
  */
-public class MyExpertFragment extends ListHttpFragment<Expert, MyExpertAdaper> {
+public class MyExpertFragment extends ListHttpFragment<Expert, UltimateViewAdapter> {
     private boolean usedRetry = false;
     private int mIndex = 1;
 
     @Override
-    protected GenericAdapter<Expert> initGenericAdapter() {
-        return new MyExpertAdaper();
+    public void onActivityCreated(Bundle savedInstanceState) {
+        setRefreshEnable(true);
+        setLoadmoreEnable(true);
+        setSwipeRemoveEnable(false);
+        super.onActivityCreated(savedInstanceState);
+
+    }
+
+    @Override
+    protected UltimateViewAdapter initAdapter() {
+        return new MyExpertAdapter(createList(mIndex));
     }
 
     @Override
     protected void doService() {
-        mAdapter.setData(createList(mIndex));
+
         obtianData();
     }
 
@@ -38,13 +48,12 @@ public class MyExpertFragment extends ListHttpFragment<Expert, MyExpertAdaper> {
 
     @Override
     protected void onRefreshListData() {
-        mAdapter.getData().add(0, createData());
-        mAdapter.notifyDataSetChanged();
+        ((MyExpertAdapter)mAdapter).add(0, createData());
     }
 
     @Override
     protected void onLoadMoreListData() {
-        mAdapter.addData(createList(mIndex));
+        ((MyExpertAdapter)mAdapter).addAll(createList(mIndex));
     }
 
     @Override

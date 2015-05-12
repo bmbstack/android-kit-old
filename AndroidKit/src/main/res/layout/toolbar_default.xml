@@ -3,7 +3,7 @@
     style="@style/ToolBarStyle"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="57dp"
+    android:layout_height="?attr/actionBarSize"
     android:background="@color/toolbar_bg"
-    android:minHeight="57dp"
+    android:minHeight="?attr/actionBarSize"
     />

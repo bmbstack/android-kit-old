@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="google_colors">
+        <item>@color/toolbar_bg</item>
+        <item>@color/toolbar_bg</item>
+        <item>@color/toolbar_bg</item>
+        <item>@color/toolbar_bg</item>
+    </integer-array>
+</resources>
