@@ -20,7 +20,6 @@ import com.devspark.appmsg.AppMsg;
 import com.marshalchen.ultimaterecyclerview.SwipeToDismissTouchListener;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
-import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 
 import java.util.List;
 
@@ -77,8 +76,6 @@ public abstract class ListHttpFragment<T, Adapter> extends Fragment implements S
         mAdapter = initAdapter();
         mUltimateRecyclerView.setAdapter(mAdapter);
         mUltimateRecyclerView.addItemDividerDecoration(getActivity());
-        StickyRecyclerHeadersDecoration headersDecoration = new StickyRecyclerHeadersDecoration(mAdapter);
-        mUltimateRecyclerView.addItemDecoration(headersDecoration);
         if(mLoadmoreEnable) {
             mUltimateRecyclerView.enableLoadmore();
             mAdapter.setCustomLoadMoreView(View.inflate(getActivity(), R.layout.layout_loading_more, null));
