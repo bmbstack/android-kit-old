@@ -27,7 +27,7 @@ dependencies {
     compile 'com.loopj.android:android-async-http:1.4.6'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
     compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
-    compile 'com.marshalchen.ultimaterecyclerview:library:0.3.2'
+    compile 'com.github.wangmingjob:UltimateRecyclerView:v0.3.3'
 }
 
 // build a jar with source files

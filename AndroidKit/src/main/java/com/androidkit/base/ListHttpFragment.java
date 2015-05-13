@@ -39,14 +39,14 @@ public abstract class ListHttpFragment<T, Adapter> extends Fragment implements S
     private boolean mRefreshEnable = false;
     private boolean mLoadmoreEnable = false;
     private boolean mSwipeRemoveEnable = false;
-    protected UltimateRecyclerView mRecyclerView;
+    protected UltimateRecyclerView mUltimateRecyclerView;
     protected UltimateViewAdapter mAdapter;
     private LinearLayoutManager mLayoutManager;
 
     final private Handler mHandler = new Handler();
     final private Runnable mRequestFocus = new Runnable() {
         public void run() {
-            mRecyclerView.focusableViewAvailable(mRecyclerView);
+            mUltimateRecyclerView.focusableViewAvailable(mUltimateRecyclerView);
         }
     };
 
@@ -70,24 +70,24 @@ public abstract class ListHttpFragment<T, Adapter> extends Fragment implements S
         super.onActivityCreated(savedInstanceState);
 
         getRetryView().findViewById(R.id.btRetry).setOnClickListener(mOnClickListener);
-        mRecyclerView = (UltimateRecyclerView) getActivity().findViewById(R.id.recyclerView);
-        mRecyclerView.setHasFixedSize(false);
+        mUltimateRecyclerView = (UltimateRecyclerView) getActivity().findViewById(R.id.recyclerView);
+        mUltimateRecyclerView.setHasFixedSize(false);
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        mUltimateRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = initAdapter();
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.addItemDividerDecoration(getActivity());
+        mUltimateRecyclerView.setAdapter(mAdapter);
+        mUltimateRecyclerView.addItemDividerDecoration(getActivity());
         if(mLoadmoreEnable) {
-            mRecyclerView.enableLoadmore();
+            mUltimateRecyclerView.enableLoadmore();
             mAdapter.setCustomLoadMoreView(View.inflate(getActivity(), R.layout.layout_loading_more, null));
-            mRecyclerView.setOnLoadMoreListener(this);
+            mUltimateRecyclerView.setOnLoadMoreListener(this);
         }
         if(mRefreshEnable) {
-            mRecyclerView.enableDefaultSwipeRefresh(true);
-            mRecyclerView.setDefaultOnRefreshListener(this);
+            mUltimateRecyclerView.enableDefaultSwipeRefresh(true);
+            mUltimateRecyclerView.setDefaultOnRefreshListener(this);
         }
         if(mSwipeRemoveEnable) {
-            mRecyclerView.setSwipeToDismissCallback(this);
+            mUltimateRecyclerView.setSwipeToDismissCallback(this);
         }
         doService();
     }
@@ -135,13 +135,13 @@ public abstract class ListHttpFragment<T, Adapter> extends Fragment implements S
     @Override
     public final void onRefresh() {
         if (!AppContext.getNetworkSensor().hasAvailableNetwork()) {
-            mRecyclerView.setRefreshing(false);
-            mRecyclerView.disableLoadmore();
+            mUltimateRecyclerView.setRefreshing(false);
+            mUltimateRecyclerView.disableLoadmore();
         } else {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    mRecyclerView.setRefreshing(false);
+                    mUltimateRecyclerView.setRefreshing(false);
                     onRefreshListData();
                 }
             }, 2000);
@@ -153,8 +153,8 @@ public abstract class ListHttpFragment<T, Adapter> extends Fragment implements S
         final LoadingView loadingView = (LoadingView) mAdapter.getCustomLoadMoreView().findViewById(R.id.loadingViewMore);
         loadingView.show(100);
         if (!AppContext.getNetworkSensor().hasAvailableNetwork()) {
-            mRecyclerView.setRefreshing(false);
-            mRecyclerView.disableLoadmore();
+            mUltimateRecyclerView.setRefreshing(false);
+            mUltimateRecyclerView.disableLoadmore();
         } else {
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -188,7 +188,7 @@ public abstract class ListHttpFragment<T, Adapter> extends Fragment implements S
 
     private void checkView() {
         ensureList();
-        if (mRecyclerView == null) {
+        if (mUltimateRecyclerView == null) {
             throw new IllegalStateException("Content view must be initialized before");
         }
     }
@@ -196,20 +196,20 @@ public abstract class ListHttpFragment<T, Adapter> extends Fragment implements S
     protected void showLoadingView() {
         checkView();
         mRetryView.setVisibility(View.GONE);
-        mRecyclerView.setVisibility(View.GONE);
+        mUltimateRecyclerView.setVisibility(View.GONE);
         setContentContainerShown(false);
     }
 
     protected void showListView() {
         checkView();
         mRetryView.setVisibility(View.GONE);
-        mRecyclerView.setVisibility(View.VISIBLE);
+        mUltimateRecyclerView.setVisibility(View.VISIBLE);
         setContentContainerShown(true);
     }
 
     protected void showRetryView() {
         checkView();
-        mRecyclerView.setVisibility(View.GONE);
+        mUltimateRecyclerView.setVisibility(View.GONE);
         mRetryView.setVisibility(View.VISIBLE);
         setContentContainerShown(true);
     }
@@ -285,13 +285,13 @@ public abstract class ListHttpFragment<T, Adapter> extends Fragment implements S
             mRetryView.setVisibility(View.GONE);
         }
 
-        mRecyclerView = (UltimateRecyclerView)root.findViewById(R.id.recyclerView);
-        if(mRecyclerView == null) {
+        mUltimateRecyclerView = (UltimateRecyclerView)root.findViewById(R.id.recyclerView);
+        if(mUltimateRecyclerView == null) {
             throw new RuntimeException("Your content must have a ListView");
         }
         mListShown = true;
         if(mAdapter != null) {
-            mRecyclerView.setAdapter(mAdapter);
+            mUltimateRecyclerView.setAdapter(mAdapter);
         }else {
             if(mProgressContainer != null) {
                 setContentContainerShown(false);
