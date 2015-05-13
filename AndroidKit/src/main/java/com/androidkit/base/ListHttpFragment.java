@@ -10,7 +10,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
@@ -21,6 +20,7 @@ import com.devspark.appmsg.AppMsg;
 import com.marshalchen.ultimaterecyclerview.SwipeToDismissTouchListener;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 
 import java.util.List;
 
@@ -77,6 +77,8 @@ public abstract class ListHttpFragment<T, Adapter> extends Fragment implements S
         mAdapter = initAdapter();
         mUltimateRecyclerView.setAdapter(mAdapter);
         mUltimateRecyclerView.addItemDividerDecoration(getActivity());
+        StickyRecyclerHeadersDecoration headersDecoration = new StickyRecyclerHeadersDecoration(mAdapter);
+        mUltimateRecyclerView.addItemDecoration(headersDecoration);
         if(mLoadmoreEnable) {
             mUltimateRecyclerView.enableLoadmore();
             mAdapter.setCustomLoadMoreView(View.inflate(getActivity(), R.layout.layout_loading_more, null));
@@ -227,22 +229,10 @@ public abstract class ListHttpFragment<T, Adapter> extends Fragment implements S
 
         mListShown = shown;
         if (shown) {
-            if(getActivity() != null) {
-                mProgressContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
-            }
-            if(getActivity() != null) {
-                mContentContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
-            }
             mLoadingView.hide();
             mProgressContainer.setVisibility(View.GONE);
             mContentContainer.setVisibility(View.VISIBLE);
         } else {
-            if(getActivity() != null) {
-                mProgressContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
-            }
-            if(getActivity() != null) {
-                mContentContainer.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out));
-            }
             mContentContainer.setVisibility(View.GONE);
             mLoadingView.show(100);
             mProgressContainer.setVisibility(View.VISIBLE);
