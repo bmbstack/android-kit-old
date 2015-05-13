@@ -65,6 +65,21 @@ public class MyExpertAdapter extends UltimateViewAdapter {
         }
     }
 
+    @Override
+    public long getHeaderId(int i) {
+        return 0;
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateHeaderViewHolder(ViewGroup viewGroup) {
+        return null;
+    }
+
+    @Override
+    public void onBindHeaderViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+
+    }
+
     private class ViewHolder extends UltimateRecyclerviewViewHolder {
 
         ImageView iv_my_expert_avatars;
