@@ -38,7 +38,7 @@ for deviceIndex in ${!allDeviceArray[*]}
 		echo "uploading apk..."
 		adb -s ${allDeviceArray[deviceIndex]} install app/python/outputs_apk/app-google-release.apk
 		echo "startup apk..."
-		adb -s ${allDeviceArray[deviceIndex]} shell am start -n com.androidkit.sample/com.androidkit.sample.activity.MainActivity
+		adb -s ${allDeviceArray[deviceIndex]} shell am start -n com.androidkit.sample/com.androidkit.sample.MainActivity
 	done
 
 #exit
