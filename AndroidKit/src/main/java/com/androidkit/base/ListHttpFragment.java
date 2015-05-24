@@ -16,7 +16,6 @@ import android.widget.RelativeLayout;
 import com.androidkit.R;
 import com.androidkit.context.AppContext;
 import com.androidkit.view.LoadingView;
-import com.devspark.appmsg.AppMsg;
 import com.marshalchen.ultimaterecyclerview.SwipeToDismissTouchListener;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
@@ -123,7 +122,6 @@ public abstract class ListHttpFragment<T, Adapter> extends Fragment implements S
             if(id == R.id.tvEmpty) {
                 onClickEmptyView();
             }else if(id == R.id.btRetry) {
-                AppMsg.makeText(getActivity(), "重试", AppMsg.STYLE_ALERT).setLayoutGravity(Gravity.BOTTOM).show();
                 onClickRetryView();
             }else {
 
