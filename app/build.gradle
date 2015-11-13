@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.androidkit.sample"
+        applicationId "cn.bmbstack.androidkit.sample"
         minSdkVersion 14 //4.2
         targetSdkVersion 21
         versionCode 1

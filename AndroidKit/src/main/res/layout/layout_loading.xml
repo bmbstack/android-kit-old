@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center">
 
-    <com.androidkit.view.LoadingView
+    <cn.bmbstack.androidkit.view.LoadingView
         xmlns:loading="http://schemas.android.com/apk/res-auto"
         android:id="@+id/loadingView"
         android:layout_width="68dp"
