@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:focusable="false"
         android:padding="3dp"
-        android:src="@drawable/ic_main_tab_my_expert">
+        android:src="@drawable/ic_main_tab_dynamic">
     </ImageView>
 
     <TextView

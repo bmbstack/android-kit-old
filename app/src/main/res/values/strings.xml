@@ -1,8 +1,7 @@
 <resources>
-    <string name="app_name">android-kit sample</string>
+    <string name="app_name">AndroidKit</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">设置</string>
 
     <string name="main_tab_name_dynamic">动态</string>
     <string name="main_tab_name_my">我的</string>

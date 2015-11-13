@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <cn.bmbstack.androidkit.view.LoadingView
+        <com.github.bmbstack.androidkit.view.LoadingView
             xmlns:loading="http://schemas.android.com/apk/res-auto"
             android:id="@+id/loadingViewMore"
             android:layout_width="36dp"

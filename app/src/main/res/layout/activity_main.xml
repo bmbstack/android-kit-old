@@ -17,7 +17,7 @@
         android:background="@color/main_tab_background">
 
 
-        <cn.bmbstack.androidkit.base.FragmentTabHost
+        <com.github.bmbstack.androidkit.base.FragmentTabHost
             android:id="@android:id/tabhost"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -28,11 +28,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="0"/>
-        </cn.bmbstack.androidkit.base.FragmentTabHost>
+        </com.github.bmbstack.androidkit.base.FragmentTabHost>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/main_tab_split_color"/>
     </RelativeLayout>
 </LinearLayout>
