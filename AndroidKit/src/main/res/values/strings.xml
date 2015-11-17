@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">AndroidKit</string>
     <string name="load_mode_tip">正在加载数据 </string>
+    <string name="photopick">图片</string>
+    <string name="photopick_clip"> </string>
+    <string name="photopick_detail"> </string>
+    <string name="photopick_pager"> </string>
 
 </resources>

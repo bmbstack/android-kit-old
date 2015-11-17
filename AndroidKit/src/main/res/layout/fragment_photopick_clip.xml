@@ -1,0 +1,87 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:custom="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@android:color/black"
+              android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/imageLoadFail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="30dp"
+            android:scaleType="fitCenter"
+            android:src="@null"
+            android:visibility="gone"/>
+
+        <com.edmodo.cropper.CropImageView
+            android:id="@+id/cropImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            />
+
+
+        <com.github.lzyzsd.circleprogress.DonutProgress
+            android:id="@+id/circleLoading"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            custom:donut_finished_color="@color/font_green"
+            custom:donut_finished_stroke_width="3dp"
+            custom:donut_max="100"
+            custom:donut_progress="30"
+            custom:donut_text_color="@android:color/transparent"
+            custom:donut_unfinished_stroke_width="3dp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llBottomOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="50dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="取消"
+            android:textColor="#fff"
+            android:textSize="18dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:scaleType="center"
+            android:src="@drawable/btn_not_cut"/>
+
+        <TextView
+            android:id="@+id/done"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="确定"
+            android:textColor="#fff"
+            android:textSize="18dp"/>
+    </LinearLayout>
+
+</LinearLayout>

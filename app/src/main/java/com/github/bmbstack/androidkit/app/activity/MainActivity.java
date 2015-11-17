@@ -1,4 +1,4 @@
-package com.github.bmbstack.androidkit.sample.activity;
+package com.github.bmbstack.androidkit.app.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,10 +10,11 @@ import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.github.bmbstack.androidkit.app.R;
+import com.github.bmbstack.androidkit.app.fragment.DynamicFragment;
+import com.github.bmbstack.androidkit.app.fragment.MyFragment;
 import com.github.bmbstack.androidkit.base.BaseActivity;
 import com.github.bmbstack.androidkit.base.FragmentTabHost;
-import com.github.bmbstack.androidkit.sample.R;
-import com.github.bmbstack.androidkit.sample.enummodel.MainTab;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,42 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
     private List<Fragment> mFragments = new ArrayList<Fragment>();
     private FragmentTabHost tabhost;
+
+    public enum MainTab {
+
+        DYNAMIC(R.string.main_tab_name_dynamic, R.drawable.ic_main_tab_dynamic, DynamicFragment.class),
+        MY(R.string.main_tab_name_my, R.drawable.ic_main_tab_dynamic, MyFragment.class);
+
+        private int tag;
+        private int resIcon;
+        private Class<?> clazz;
+
+        MainTab(int resName, int resIcon, Class<?> clz) {
+            this.tag = resName;
+            this.resIcon = resIcon;
+            this.clazz = clz;
+        }
+
+        public int getTag() {
+            return tag;
+        }
+
+        public void setTag(int tag) {
+            this.tag = tag;
+        }
+
+        public int getResIcon() {
+            return resIcon;
+        }
+
+        public void setResIcon(int resIcon) {
+            this.resIcon = resIcon;
+        }
+
+        public Class<?> getClazz() {
+            return clazz;
+        }
+    }
 
     public static void startActivity(Activity activity) {
         Intent intent = new Intent(activity, MainActivity.class);

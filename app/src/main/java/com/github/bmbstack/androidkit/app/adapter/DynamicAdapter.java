@@ -1,4 +1,4 @@
-package com.github.bmbstack.androidkit.sample.adapter;
+package com.github.bmbstack.androidkit.app.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.github.bmbstack.androidkit.sample.R;
-import com.github.bmbstack.androidkit.sample.model.Dynamic;
+import com.github.bmbstack.androidkit.app.R;
+import com.github.bmbstack.androidkit.app.model.Dynamic;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;

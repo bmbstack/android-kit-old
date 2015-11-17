@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2005, Kuwo.cn, Inc. All rights reserved.
  */
-package com.github.bmbstack.androidkit.sample;
+package com.github.bmbstack.androidkit.app;
 
 import android.app.Application;
 

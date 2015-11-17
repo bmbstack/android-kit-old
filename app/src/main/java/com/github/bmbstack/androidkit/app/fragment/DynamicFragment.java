@@ -1,11 +1,11 @@
-package com.github.bmbstack.androidkit.sample.fragment;
+package com.github.bmbstack.androidkit.app.fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
 
 import com.github.bmbstack.androidkit.base.ListHttpFragment;
-import com.github.bmbstack.androidkit.sample.adapter.DynamicAdapter;
-import com.github.bmbstack.androidkit.sample.model.Dynamic;
+import com.github.bmbstack.androidkit.app.adapter.DynamicAdapter;
+import com.github.bmbstack.androidkit.app.model.Dynamic;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 
 import java.util.ArrayList;

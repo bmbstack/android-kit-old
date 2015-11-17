@@ -5,9 +5,9 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.github.bmbstack.androidkit.sample"
+        applicationId "com.github.bmbstack.androidkit.app"
         minSdkVersion 14 //4.2
-        targetSdkVersion 21
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
@@ -41,6 +41,7 @@ android {
     productFlavors {
         google {}
     }
+
 }
 
 dependencies {

@@ -11,4 +11,9 @@
     <color name="tab_text_selected">@color/toolbar_bg</color>
 
     <color name="font_gray">#999999</color>
+
+    <color name="camera_background">#ff353535</color>
+    <color name="font_green">#ff3bbd79</color>
+    <color name="font_black_9">#999999</color>
+    <color name="subject_click_state">#F0F0F0</color>
 </resources>

@@ -1,4 +1,4 @@
-package com.github.bmbstack.androidkit.sample.model;
+package com.github.bmbstack.androidkit.app.model;
 
 import java.io.Serializable;
 

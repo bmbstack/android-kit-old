@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="62dp"
+    android:layout_height="62dp"
+    android:background="@drawable/tab_subject_item_selector"
+    android:scaleType="centerCrop"/>

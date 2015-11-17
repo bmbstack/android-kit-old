@@ -1,4 +1,4 @@
-package com.github.bmbstack.androidkit.sample.fragment;
+package com.github.bmbstack.androidkit.app.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,7 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.github.bmbstack.androidkit.sample.R;
+import com.github.bmbstack.androidkit.app.R;
+import com.github.bmbstack.androidkit.app.activity.BackPageActivity;
 
 /**
  * Created by GYJC on 2015/4/28.
@@ -30,6 +31,16 @@ public class MyFragment extends Fragment {
         LinearLayout ll_my_collection = (LinearLayout) view.findViewById(R.id.ll_my_collection);
         LinearLayout ll_my_learn_history = (LinearLayout) view.findViewById(R.id.ll_my_learn_history);
         LinearLayout ll_settings = (LinearLayout) view.findViewById(R.id.ll_settings);
+
+        ll_settings.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Bundle args = new Bundle();
+                args.putInt(BackPageActivity.BUNDLE_KEY_BACK_PAGE, BackPageActivity.BackPage.PHOTOPICKSAMPLE.getValue());
+                BackPageActivity.startActivity(getActivity(), args);
+            }
+        });
 
     }
 
