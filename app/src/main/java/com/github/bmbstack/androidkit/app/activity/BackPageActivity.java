@@ -1,6 +1,5 @@
 package com.github.bmbstack.androidkit.app.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -68,6 +67,14 @@ public class BackPageActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Fragment fragment = mFragment.get();
+        if(fragment != null) {
+            fragment.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,17 +118,5 @@ public class BackPageActivity extends BaseActivity {
             e.printStackTrace();
             throw new IllegalArgumentException("generate fragment error. by BackPage:" + mBackPage);
         }
-    }
-
-    public static void startActivity(Activity activity, Bundle args) {
-        Intent intent = new Intent(activity, BackPageActivity.class);
-        intent.putExtras(args);
-        activity.startActivity(intent);
-    }
-
-    public static void startActivityForResult(Activity activity, int requestCode, Bundle args) {
-        Intent intent = new Intent(activity, BackPageActivity.class);
-        intent.putExtras(args);
-        activity.startActivityForResult(intent, requestCode, args);
     }
 }

@@ -11,9 +11,6 @@ import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by GYJC on 2015/4/30.
- */
 public class DynamicFragment extends ListHttpFragment<Dynamic, UltimateViewAdapter> {
     private boolean usedRetry = false;
     private int mIndex = 1;

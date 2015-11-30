@@ -38,6 +38,7 @@ import com.github.bmbstack.androidkit.component.photopick.model.FolderPhotoInfo;
 import com.github.bmbstack.androidkit.component.photopick.model.PhotoInfo;
 import com.github.bmbstack.androidkit.util.CameraPhotoUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -137,26 +138,27 @@ public class PhotoPickFragment extends Fragment implements LoaderManager.LoaderC
                 }
 
                 Bundle args = new Bundle();
-                args.putInt(BackPageActivity.BUNDLE_KEY_BACK_PAGE, BackPageActivity.BackPage.PHOTOPICKCLIP.getValue());
-                args.putString(PhotoPickClipFragment.BUNDLE_KEY_IMAGE_URI, imagePath);
-                BackPageActivity.startActivityForResult(getActivity(), PhotoPickFragment.REQUEST_CODE_PHOTOPICK_CLIP, args);
+                Intent intent = new Intent(getActivity(), BackPageActivity.class);
+                intent.putExtra(BackPageActivity.BUNDLE_KEY_BACK_PAGE, BackPageActivity.BackPage.PHOTOPICKCLIP.getValue());
+                intent.putExtra(PhotoPickClipFragment.BUNDLE_KEY_IMAGE_URI, imagePath);
+                getActivity().startActivityForResult(intent, PhotoPickFragment.REQUEST_CODE_PHOTOPICK_CLIP);
             }else {
                 //多选模式
-                Bundle args = new Bundle();
-                args.putInt(BackPageActivity.BUNDLE_KEY_BACK_PAGE, BackPageActivity.BackPage.PHOTOPICKDETAIL.getValue());
-                args.putSerializable(PhotoPickDetailFragment.PICK_DATA, mPickData);
-                args.putInt(PhotoPickDetailFragment.EXTRA_MAX, mMaxPick);
+                Intent intent = new Intent(getActivity(), BackPageActivity.class);
+                intent.putExtra(BackPageActivity.BUNDLE_KEY_BACK_PAGE, BackPageActivity.BackPage.PHOTOPICKDETAIL.getValue());
+                intent.putExtra(PhotoPickDetailFragment.PICK_DATA, (Serializable) mPickData);
+                intent.putExtra(PhotoPickDetailFragment.EXTRA_MAX, mMaxPick);
 
                 String folderParam = "";
                 if (isAllPhotoMode()) {
                     // 第一个item是照相机
-                    args.putInt(PhotoPickDetailFragment.PHOTO_BEGIN, position - 1);
+                    intent.putExtra(PhotoPickDetailFragment.PHOTO_BEGIN, position - 1);
                 } else {
-                    args.putInt(PhotoPickDetailFragment.PHOTO_BEGIN, position);
+                    intent.putExtra(PhotoPickDetailFragment.PHOTO_BEGIN, position);
                     folderParam = mFolderAdapter.getSelect();
                 }
-                args.putString(PhotoPickDetailFragment.FOLDER_NAME, folderParam);
-                BackPageActivity.startActivityForResult(getActivity(), PhotoPickFragment.REQUEST_CODE_PHOTOPICK_DETAIL, args);
+                intent.putExtra(PhotoPickDetailFragment.FOLDER_NAME, folderParam);
+                getActivity().startActivityForResult(intent, PhotoPickFragment.REQUEST_CODE_PHOTOPICK_DETAIL);
             }
 
         }
@@ -170,13 +172,13 @@ public class PhotoPickFragment extends Fragment implements LoaderManager.LoaderC
                 return;
             }
 
-            Bundle args = new Bundle();
-            args.putInt(BackPageActivity.BUNDLE_KEY_BACK_PAGE, BackPageActivity.BackPage.PHOTOPICKDETAIL.getValue());
-            args.putString(PhotoPickDetailFragment.FOLDER_NAME, mFolderAdapter.getSelect());
-            args.putSerializable(PhotoPickDetailFragment.PICK_DATA, mPickData);
-            args.putSerializable(PhotoPickDetailFragment.ALL_DATA, mPickData);
-            args.putInt(PhotoPickDetailFragment.EXTRA_MAX, mMaxPick);
-            BackPageActivity.startActivityForResult(getActivity(), PhotoPickFragment.REQUEST_CODE_PHOTOPICK_DETAIL, args);
+            Intent intent = new Intent(getActivity(), BackPageActivity.class);
+            intent.putExtra(BackPageActivity.BUNDLE_KEY_BACK_PAGE, BackPageActivity.BackPage.PHOTOPICKDETAIL.getValue());
+            intent.putExtra(PhotoPickDetailFragment.FOLDER_NAME, mFolderAdapter.getSelect());
+            intent.putExtra(PhotoPickDetailFragment.PICK_DATA, mPickData);
+            intent.putExtra(PhotoPickDetailFragment.ALL_DATA, (Serializable) mPickData);
+            intent.putExtra(PhotoPickDetailFragment.EXTRA_MAX, mMaxPick);
+            getActivity().startActivityForResult(intent, PhotoPickFragment.REQUEST_CODE_PHOTOPICK_DETAIL);
         }
     };
 
@@ -217,6 +219,7 @@ public class PhotoPickFragment extends Fragment implements LoaderManager.LoaderC
                 hideFolderList();
             } else {
                if(isAdded()) {
+                   mFinishMenu.setEnabled(false);
                    Intent data = new Intent();
                    data.putExtra(BUNDLE_KEY_PHOTOPICK_PICKED_DATA, mPickData);
                    getActivity().setResult(RESULT_CODE_OK_PHOTOPICK_PICKED_DATA, data);
@@ -447,11 +450,11 @@ public class PhotoPickFragment extends Fragment implements LoaderManager.LoaderC
         if (requestCode == REQUEST_CODE_CAMERA) {
             if (resultCode == Activity.RESULT_OK) {
                 if(mIsSingleMode) {
-                    Bundle args = new Bundle();
                     String imagePath = fileUri.toString();
-                    args.putInt(BackPageActivity.BUNDLE_KEY_BACK_PAGE, BackPageActivity.BackPage.PHOTOPICKCLIP.getValue());
-                    args.putString(PhotoPickClipFragment.BUNDLE_KEY_IMAGE_URI, imagePath);
-                    BackPageActivity.startActivityForResult(getActivity(), PhotoPickFragment.REQUEST_CODE_PHOTOPICK_CLIP, args);
+                    Intent intent = new Intent(getActivity(), BackPageActivity.class);
+                    intent.putExtra(BackPageActivity.BUNDLE_KEY_BACK_PAGE, BackPageActivity.BackPage.PHOTOPICKCLIP.getValue());
+                    intent.putExtra(PhotoPickClipFragment.BUNDLE_KEY_IMAGE_URI, imagePath);
+                    getActivity().startActivityForResult(intent, PhotoPickFragment.REQUEST_CODE_PHOTOPICK_CLIP);
                 }else {
                     PhotoInfo photoInfo = new PhotoInfo(fileUri.toString());
                     if(isAdded()) {

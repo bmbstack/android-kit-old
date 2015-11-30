@@ -1,5 +1,6 @@
 package com.github.bmbstack.androidkit.app.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -36,9 +37,9 @@ public class MyFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Bundle args = new Bundle();
-                args.putInt(BackPageActivity.BUNDLE_KEY_BACK_PAGE, BackPageActivity.BackPage.PHOTOPICKSAMPLE.getValue());
-                BackPageActivity.startActivity(getActivity(), args);
+                Intent intent = new Intent(getActivity(), BackPageActivity.class);
+                intent.putExtra(BackPageActivity.BUNDLE_KEY_BACK_PAGE, BackPageActivity.BackPage.PHOTOPICKSAMPLE.getValue());
+                getActivity().startActivity(intent);
             }
         });
 

@@ -95,10 +95,10 @@ public class PhotoPickSampleFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.singleImageView:
-                    Bundle args = new Bundle();
-                    args.putInt(BackPageActivity.BUNDLE_KEY_BACK_PAGE, BackPageActivity.BackPage.PHOTOPICK.getValue());
-                    args.putBoolean(PhotoPickFragment.BUNDLE_KEY_PHOTOPICK_MODE_SINGLE, true);
-                    BackPageActivity.startActivityForResult(getActivity(), REQUEST_CODE_PICK_SINGLE, args);
+                    Intent intent = new Intent(getActivity(), BackPageActivity.class);
+                    intent.putExtra(BackPageActivity.BUNDLE_KEY_BACK_PAGE, BackPageActivity.BackPage.PHOTOPICK.getValue());
+                    intent.putExtra(PhotoPickFragment.BUNDLE_KEY_PHOTOPICK_MODE_SINGLE, true);
+                    getActivity().startActivityForResult(intent, REQUEST_CODE_PICK_SINGLE);
                     break;
                 default:
                     break;
@@ -134,12 +134,11 @@ public class PhotoPickSampleFragment extends Fragment {
                         return;
                     }
 
-                    Bundle args = new Bundle();
-                    args.putInt(BackPageActivity.BUNDLE_KEY_BACK_PAGE, BackPageActivity.BackPage.PHOTOPICK.getValue());
-                    args.putInt(PhotoPickFragment.EXTRA_MAX, count);
-                    args.putBoolean(PhotoPickFragment.BUNDLE_KEY_PHOTOPICK_MODE_SINGLE, false);
-                    BackPageActivity.startActivityForResult(getActivity(), REQUEST_CODE_PICK_MULTI, args);
-
+                    Intent intent = new Intent(getActivity(), BackPageActivity.class);
+                    intent.putExtra(BackPageActivity.BUNDLE_KEY_BACK_PAGE, BackPageActivity.BackPage.PHOTOPICK.getValue());
+                    intent.putExtra(PhotoPickFragment.EXTRA_MAX, count);
+                    intent.putExtra(PhotoPickFragment.BUNDLE_KEY_PHOTOPICK_MODE_SINGLE, false);
+                    getActivity().startActivityForResult(intent, REQUEST_CODE_PICK_MULTI);
                 } else {
                 }
             }

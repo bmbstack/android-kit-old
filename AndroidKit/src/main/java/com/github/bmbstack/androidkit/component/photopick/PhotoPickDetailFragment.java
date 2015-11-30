@@ -10,6 +10,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -40,6 +43,15 @@ public class PhotoPickDetailFragment extends Fragment {
     private final String actionbarTitle = "%d/%d";
     private ImagesAdapter mAdapter;
     private Cursor mCursor;
+    private MenuItem mSelectedPhotoMenuItem;
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_photopick_detail, menu);
+        mSelectedPhotoMenuItem = menu.findItem(R.id.selected_photo_counts);
+        mSelectedPhotoMenuItem.setEnabled(true);
+    }
 
 
     @Override
@@ -166,9 +178,9 @@ public class PhotoPickDetailFragment extends Fragment {
         }
     }
 
-    private void updateDataPickCount() {
-        String send = String.format("选择(%d/%d)", mPickPhotos.size(), mMaxPick);
-        mCheckBox.setText(send);
+    public void updateDataPickCount() {
+        String selectedTitle = String.format("已选(%d/%d)", mPickPhotos.size(), mMaxPick);
+        mCheckBox.setText(selectedTitle);
     }
 
     /**

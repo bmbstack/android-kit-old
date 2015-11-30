@@ -49,8 +49,8 @@ public abstract class FileDirectoryContext {
 	 * Add the child file directory
 	 * 
 	 * @param parent use getSDCardMainFileDirectory，getSDCardHiddenFileDirectory get the parent file directory
-	 * @param childType
-	 * @param childValue
+	 * @param childFileDirectoryType
+	 * @param childFileDirectoryValue
 	 * @return child folder directory.
 	 */
 	protected FileDirectory addChildFileDirectory(FileDirectory parent, String childFileDirectoryType, String childFileDirectoryValue) {

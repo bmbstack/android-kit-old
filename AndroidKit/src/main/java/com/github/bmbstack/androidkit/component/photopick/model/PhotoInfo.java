@@ -1,5 +1,7 @@
 package com.github.bmbstack.androidkit.component.photopick.model;
 
+import android.os.Parcel;
+
 import java.io.File;
 import java.io.Serializable;
 
@@ -12,6 +14,13 @@ public class PhotoInfo implements Serializable {
 
     public PhotoInfo(String path) {
         this.path = pathAddPreFix(path);
+    }
+
+    protected PhotoInfo(Parcel in) {
+        path = in.readString();
+        photoId = in.readLong();
+        width = in.readInt();
+        height = in.readInt();
     }
 
     public static String pathAddPreFix(String path) {

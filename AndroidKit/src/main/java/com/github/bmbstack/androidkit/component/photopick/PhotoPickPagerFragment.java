@@ -1,6 +1,7 @@
 package com.github.bmbstack.androidkit.component.photopick;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,6 +20,10 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListe
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.io.File;
+
+import pl.droidsonroids.gif.GifImageView;
+import uk.co.senab.photoview.PhotoView;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class PhotoPickPagerFragment extends Fragment {
     public static final String BUNDLE_KEY_IMAGE_URI = "BUNDLE_KEY_IMAGE_URI" ;
@@ -45,6 +50,8 @@ public class PhotoPickPagerFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
+        PhotoPickDetailFragment parentFragment = (PhotoPickDetailFragment) getParentFragment();
+        parentFragment.updateDataPickCount();
         mUri = getArguments().getString(BUNDLE_KEY_IMAGE_URI);
         if(mUri != null) {
             showPhoto();
@@ -92,25 +99,25 @@ public class PhotoPickPagerFragment extends Fragment {
                         }
                     });
                 } else {
-//                    PhotoView photoView = (PhotoView) getActivity().getLayoutInflater().inflate(R.layout.imageview_touch, null);
-//                    image = photoView;
-//                    rootLayout.addView(image);
-//                    photoView.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
-//                        @Override
-//                        public void onPhotoTap(View view, float x, float y) {
-//                            getActivity().onBackPressed();
-//                        }
-//                    });
+                    PhotoView photoView = (PhotoView) getActivity().getLayoutInflater().inflate(R.layout.imageview_touch, null);
+                    image = photoView;
+                    rootLayout.addView(image);
+                    photoView.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
+                        @Override
+                        public void onPhotoTap(View view, float x, float y) {
+                            getActivity().onBackPressed();
+                        }
+                    });
                 }
 
                 try {
-//                    if (image instanceof GifImageView) {
-//                        Uri uri1 = Uri.fromFile(file);
-//                        ((GifImageView) image).setImageURI(uri1);
-//                    } else if (image instanceof PhotoView) {
-//                        ((PhotoView) image).setImageBitmap(loadedImage);
-//
-//                    }
+                    if (image instanceof GifImageView) {
+                        Uri uri1 = Uri.fromFile(file);
+                        ((GifImageView) image).setImageURI(uri1);
+                    } else if (image instanceof PhotoView) {
+                        ((PhotoView) image).setImageBitmap(loadedImage);
+
+                    }
                 } catch (Exception e) {
                 }
             }
