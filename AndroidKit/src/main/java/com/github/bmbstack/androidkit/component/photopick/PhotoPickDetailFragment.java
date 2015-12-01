@@ -1,6 +1,7 @@
 package com.github.bmbstack.androidkit.component.photopick;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,15 +11,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.github.bmbstack.androidkit.R;
+import com.github.bmbstack.androidkit.base.BackPageActivity;
 import com.github.bmbstack.androidkit.component.photopick.model.PhotoInfo;
 
 import java.util.ArrayList;
@@ -43,16 +42,6 @@ public class PhotoPickDetailFragment extends Fragment {
     private final String actionbarTitle = "%d/%d";
     private ImagesAdapter mAdapter;
     private Cursor mCursor;
-    private MenuItem mSelectedPhotoMenuItem;
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_photopick_detail, menu);
-        mSelectedPhotoMenuItem = menu.findItem(R.id.selected_photo_counts);
-        mSelectedPhotoMenuItem.setEnabled(true);
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -134,10 +123,21 @@ public class PhotoPickDetailFragment extends Fragment {
         mViewPager.setAdapter(mAdapter);
         mViewPager.setCurrentItem(mBegin);
 
+        BackPageActivity backPageActivity = (BackPageActivity) getActivity();
+        backPageActivity.addTitleLeftBackView(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if(isAdded()) {
+                    getActivity().setResult(Activity.RESULT_OK);
+                    getActivity().finish();
+                }
+            }
+        });
+
         updateDisplay(mBegin);
         updateDataPickCount();
     }
-
 
     @Override
     public void onDestroy() {

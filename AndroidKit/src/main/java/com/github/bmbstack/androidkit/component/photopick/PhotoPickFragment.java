@@ -476,7 +476,7 @@ public class PhotoPickFragment extends Fragment implements LoaderManager.LoaderC
                 }
             }
         }else if(requestCode == REQUEST_CODE_PHOTOPICK_DETAIL) {
-            if(requestCode == Activity.RESULT_OK) {
+            if(resultCode == Activity.RESULT_OK) {
                 mPhotoAdapter.notifyDataSetChanged();
                 updatePickCount();
                 updateFinishState();

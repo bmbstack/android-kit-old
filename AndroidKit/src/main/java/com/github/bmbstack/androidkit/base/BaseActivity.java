@@ -117,7 +117,7 @@ public abstract class BaseActivity extends ActionBarActivity {
         }
     }
 
-    protected void addTitleLeftBackView() {
+    public void addTitleLeftBackView() {
         mToolbar.setNavigationIcon(R.drawable.ic_back);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
 
@@ -128,7 +128,7 @@ public abstract class BaseActivity extends ActionBarActivity {
         });
     }
 
-    protected void addTitleLeftBackView(View.OnClickListener listener) {
+    public void addTitleLeftBackView(View.OnClickListener listener) {
         mToolbar.setNavigationIcon(R.drawable.ic_back);
         mToolbar.setNavigationOnClickListener(listener);
     }
